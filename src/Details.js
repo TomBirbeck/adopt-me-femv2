@@ -1,9 +1,9 @@
-import { Component } from "react";
-import { useParams } from "react-router-dom";
-import Carousel from "./Carousel";
-import ErrorBoundary from "./ErrorBoundary";
-import ThemeContext from "./ThemeContext";
-import Modal from "./Modal";
+import { Component } from 'react';
+import { useParams } from 'react-router-dom';
+import Carousel from './Carousel';
+import ErrorBoundary from './ErrorBoundary';
+import ThemeContext from './ThemeContext';
+import Modal from './Modal';
 
 class Details extends Component {
   state = { loading: true, showModal: false };
@@ -16,7 +16,7 @@ class Details extends Component {
     this.setState(Object.assign({ loading: false }, json.pets[0]));
   }
   toggleModal = () => this.setState({ showModal: !this.state.showModal });
-  adopt = () => (window.location = "http://bit.ly/pet-adopt");
+  adopt = () => (window.location = 'http://bit.ly/pet-adopt');
   render() {
     if (this.state.loading) {
       return <h2>loading … </h2>;
@@ -26,7 +26,7 @@ class Details extends Component {
       this.state;
 
     return (
-      <div className="details">
+      <div className='details'>
         <Carousel images={images} />
         <div>
           <h1>{name}</h1>
@@ -46,8 +46,8 @@ class Details extends Component {
             <Modal>
               <div>
                 <h1>Would you like to adopt {name}?</h1>
-                <div className="buttons">
-                  <a href="https://bit.ly/pet-adopt">Yes</a>
+                <div className='buttons'>
+                  <a href='https://bit.ly/pet-adopt'>Yes</a>
                   <button onClick={this.toggleModal}>No</button>
                 </div>
               </div>
