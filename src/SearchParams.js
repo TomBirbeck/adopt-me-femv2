@@ -1,17 +1,19 @@
-import { useState, useEffect, useContext } from "react";
-import Results from "./Results";
-import useBreedList from "./useBreedList";
-import ThemeContext from "./ThemeContext";
+import { useState, useEffect } from 'react';
+import Results from './Results';
+import useBreedList from './useBreedList';
+import { useSelector } from 'react-redux';
 
-const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
+const ANIMALS = ['bird', 'cat', 'dog', 'rabbit', 'reptile'];
 
 const SearchParams = () => {
-  const [location, updateLocation] = useState("");
-  const [animal, updateAnimal] = useState("");
-  const [breed, updateBreed] = useState("");
+  //redux
+  const animal = useSelector((state) => state.animal);
+  const location = useSelector((state) => state.location);
+  const breed = useSelector((state) => state.breed);
+  const theme = useSelector((state) => state.theme);
+  //not redux
   const [pets, setPets] = useState([]);
   const [breeds] = useBreedList(animal);
-  const [theme, setTheme] = useContext(ThemeContext);
 
   useEffect(() => {
     requestPets();
@@ -27,34 +29,34 @@ const SearchParams = () => {
   }
 
   return (
-    <div className="search-params">
+    <div className='search-params'>
       <form
         onSubmit={(e) => {
           e.preventDefault();
           requestPets();
         }}
       >
-        <label htmlFor="location">
+        <label htmlFor='location'>
           Location
           <input
-            id="location"
+            id='location'
             value={location}
-            placeholder="Location"
+            placeholder='Location'
             onChange={(e) => updateLocation(e.target.value)}
           />
         </label>
-        <label htmlFor="animal">
+        <label htmlFor='animal'>
           Animal
           <select
-            id="animal"
+            id='animal'
             value={animal}
             onChange={(e) => {
               updateAnimal(e.target.value);
-              updateBreed("");
+              updateBreed('');
             }}
             onBlur={(e) => {
               updateAnimal(e.target.value);
-              updateBreed("");
+              updateBreed('');
             }}
           >
             <option />
@@ -65,11 +67,11 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
-        <label htmlFor="breed">
+        <label htmlFor='breed'>
           Breed
           <select
             disabled={!breeds.length}
-            id="breed"
+            id='breed'
             value={breed}
             onChange={(e) => updateBreed(e.target.value)}
             onBlur={(e) => updateBreed(e.target.value)}
@@ -82,17 +84,17 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
-        <label htmlFor="theme">
+        <label htmlFor='theme'>
           Theme
           <select
             value={theme}
             onChange={(e) => setTheme(e.target.value)}
             onBlur={(e) => setTheme(e.target.value)}
           >
-            <option value="peru">Peru</option>
-            <option value="darkblue">Dark Blue</option>
-            <option value="chartreuse">Chartreuse</option>
-            <option value="mediumorchid">Medium Orchid</option>
+            <option value='peru'>Peru</option>
+            <option value='darkblue'>Dark Blue</option>
+            <option value='chartreuse'>Chartreuse</option>
+            <option value='mediumorchid'>Medium Orchid</option>
           </select>
         </label>
         <button style={{ backgroundColor: theme }}>Submit</button>
