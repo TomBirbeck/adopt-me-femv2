@@ -1,4 +1,4 @@
-export default function location(state = 'Seattle, WA', action) {
+export default function location(state = '', action) {
   switch (action.type) {
     case 'CHANGE_LOCATION':
       return action.payload;
