@@ -35,17 +35,15 @@
   ],
   "targets": {
     "frontend": {
-      "source": [
-        "src/index.html"
-      ],
+      "source": "src/index.html",
       "publicUrl": "/frontend"
     },
     "backend": {
       "source": "server/index.js",
       "optimize": false,
       "context": "node",
-      "engine": {
-        "node": ">=16.15.0"
+      "engines": {
+        "node": ">=16"
       }
     }
   }
